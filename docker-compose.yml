@@ -1,0 +1,17 @@
+version: '3.3'
+
+services:
+  web:
+    build: .
+    image: redispubsub
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    ports:
+      - 80:3000
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:4.0.2
+

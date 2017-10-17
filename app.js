@@ -11,7 +11,10 @@ var bodyParser = require('body-parser');
 var ExpressSession = require('express-session');
 var connectRedis = require('connect-redis');
 var RedisStore = connectRedis(ExpressSession);
-var rClient = redis.createClient();
+var rClient = redis.createClient({
+  host: process.env.REDIS_HOST,
+  port: process.env.REDIS_PORT,
+});
 var sessionStore = new RedisStore({client: rClient});
 
 var app = express();

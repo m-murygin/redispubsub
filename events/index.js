@@ -1,7 +1,13 @@
 'use strict';
 var redis = require('redis');
-var sub = redis.createClient();
-var pub = redis.createClient();
+var sub = redis.createClient({
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+});
+var pub = redis.createClient({
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
+});
 sub.subscribe('chat');
 
 module.exports = function(io) {
